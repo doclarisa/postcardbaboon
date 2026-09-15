@@ -1,0 +1,315 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Local+ Ad Rates</title>
+<style>
+  :root{
+    --paper:#FBF7EF;
+    --ink:#211A13;
+    --muted:#8A7A63;
+    --line:#DED2B8;
+    --blue:#1F3A5F;
+    --red:#B23A2E;
+    --card:#FFFFFF;
+    --card-2:#F3ECDC;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#17130F;
+      --ink:#F3EAD9;
+      --muted:#B0A088;
+      --line:#3C3226;
+      --blue:#7FA3D1;
+      --red:#E2685A;
+      --card:#20190F;
+      --card-2:#241D14;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#17130F;
+    --ink:#F3EAD9;
+    --muted:#B0A088;
+    --line:#3C3226;
+    --blue:#7FA3D1;
+    --red:#E2685A;
+    --card:#20190F;
+    --card-2:#241D14;
+  }
+
+  body{ background:var(--paper); color:var(--ink); }
+
+  .sheet{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 20px 56px;
+    font-family:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  .stripe{
+    height:10px;
+    margin:0 -20px 0;
+    background:repeating-linear-gradient(
+      45deg,
+      var(--red) 0 14px,
+      var(--paper) 14px 22px,
+      var(--blue) 22px 36px,
+      var(--paper) 36px 44px
+    );
+  }
+
+  header{
+    padding-block:32px 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .eyebrow .dot{ color:var(--red); }
+  h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    font-size:clamp(32px, 6vw, 44px);
+    line-height:1.05;
+    margin:10px 0 8px;
+    text-wrap:balance;
+  }
+  .tagline{
+    color:var(--muted);
+    font-size:16px;
+    max-width:52ch;
+    line-height:1.5;
+  }
+
+  .stat-row{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:22px;
+  }
+  .stat{ min-width:120px; }
+  .stat b{
+    display:block;
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric:tabular-nums;
+    font-size:24px;
+    color:var(--blue);
+  }
+  .stat span{
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:.03em;
+  }
+
+  .tiers{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+    margin-top:32px;
+  }
+  @media (max-width:640px){
+    .tiers{ grid-template-columns:1fr; }
+  }
+
+  .tier{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:22px 20px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    position:relative;
+  }
+  .tier.featured{ border-color:var(--blue); }
+  .tag{
+    position:absolute;
+    top:-11px;
+    left:18px;
+    background:var(--blue);
+    color:var(--paper);
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:3px;
+  }
+  .tier h2{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    font-size:19px;
+    margin:0;
+  }
+  .price{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric:tabular-nums;
+    font-size:30px;
+    color:var(--ink);
+    line-height:1;
+  }
+  .price sub{
+    font-size:13px;
+    color:var(--muted);
+    font-family:"Public Sans", sans-serif;
+  }
+  .tier ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    font-size:14px;
+    color:var(--ink);
+    flex:1;
+  }
+  .tier li{
+    padding-left:16px;
+    position:relative;
+    line-height:1.45;
+  }
+  .tier li::before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color:var(--red);
+  }
+  .tier .note{
+    font-size:12px;
+    color:var(--muted);
+    border-top:1px dashed var(--line);
+    padding-top:10px;
+    margin-top:2px;
+  }
+
+  .how{
+    margin-top:36px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  @media (max-width:640px){ .how{ grid-template-columns:1fr; } }
+  .how h3{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 8px;
+  }
+  .how p{ margin:0; font-size:14px; line-height:1.55; color:var(--ink); }
+
+  footer{
+    margin-top:36px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .cta{
+    font-family:"Fraunces", Georgia, serif;
+    font-size:18px;
+  }
+  .contact{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:13px;
+    color:var(--blue);
+    text-align:right;
+  }
+  .contact .fill{
+    color:var(--red);
+  }
+  .postmark{
+    font-size:11px;
+    color:var(--muted);
+    text-align:right;
+    margin-top:2px;
+  }
+</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<div class="stripe"></div>
+<div class="sheet">
+  <header>
+    <div class="eyebrow"><span class="dot">●</span> Every Door Direct Mail · ZIP 60305</div>
+    <h1>Local+ Coupons</h1>
+    <p class="tagline">One shared postcard, straight into the mailbox of every home in your neighborhood — plus a live digital deals page people can scan back to anytime.</p>
+    <div class="stat-row">
+      <div class="stat"><b>2,528</b><span>homes this run</span></div>
+      <div class="stat"><b>8</b><span>EDDM routes</span></div>
+      <div class="stat"><b>1</b><span>business per category</span></div>
+    </div>
+  </header>
+
+  <section class="tiers">
+    <div class="tier">
+      <h2>Single Spot</h2>
+      <div class="price">$299<sub> one-time</sub></div>
+      <ul>
+        <li>Standard ad space on this mailing</li>
+        <li>Free ad design + unlimited revisions</li>
+        <li>Listed on the Local+ deals page</li>
+        <li>We help you write the offer</li>
+      </ul>
+      <div class="note">No contract. Good way to try it once.</div>
+    </div>
+
+    <div class="tier featured">
+      <span class="tag">Best value</span>
+      <h2>Local+ Monthly</h2>
+      <div class="price">$199<sub>/mo</sub></div>
+      <ul>
+        <li>Standard space on this run + next 2</li>
+        <li>Always-on listing between mailings</li>
+        <li>Swap your offer anytime, no charge</li>
+        <li>Locks in your category before a competitor does</li>
+      </ul>
+      <div class="note">3-month minimum · lowest cost per mailing</div>
+    </div>
+
+    <div class="tier">
+      <h2>Featured Partner</h2>
+      <div class="price">$549<sub> one-time</sub></div>
+      <ul>
+        <li>Double-size space, top of the card</li>
+        <li>Pinned to the top of the deals page</li>
+        <li>Category exclusivity, first right of renewal</li>
+        <li>Dynamic QR code — we track your scans</li>
+      </ul>
+      <div class="note">One per category. First come, first served.</div>
+    </div>
+  </section>
+
+  <section class="how">
+    <div>
+      <h3>How it reaches people</h3>
+      <p>Every home in the 8 selected routes gets the card — no mailing list, no opt-in, just USPS EDDM. Your ad is on the front; your QR code links to a page they can find deals on anytime.</p>
+    </div>
+    <div>
+      <h3>Why one per category</h3>
+      <p>We only put one business per category on the card, so your ad isn't sitting next to a direct competitor. Spots go to whoever locks theirs in first.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="cta">Comment below or DM to grab your spot.</div>
+    <div>
+      <div class="contact"><span class="fill">[your email]</span> · <span class="fill">[your phone]</span></div>
+      <div class="postmark">Local+ Coupons — Oak Park &amp; River Forest</div>
+    </div>
+  </footer>
+</div>
+
+</body></html>
